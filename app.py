@@ -4,8 +4,10 @@ import os
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["GET", "HEAD"])
 def index():
+    if request.method == "HEAD":
+        return "", 200 
     # Tạo QR code
     img = qrcode.make("https://heart-qr-flask.onrender.com")  # hoặc URL của bạn
 
